@@ -1,5 +1,4 @@
 # codequest2019
-Problems and Solution Code for Lockheed's 2019 Code Quest
 
 Our solutions to <a href='https://www.lockheedmartin.com/en-us/who-we-are/communities/codequest.html'>Lockheed Martin's 2019 Code Quest coding competition. </a><br>
 <ul>
