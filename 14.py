@@ -4,15 +4,13 @@ cases = int(sys.stdin.readline().rstrip())
 
 for _ in range(cases):
     n=int(sys.stdin.readline().rstrip())
-    cities=[]
+    d={}
     for _ in range(n):
-        i=sys.stdin.readline().split()
-        cities.append([i[0],i[1]])
-    d=dict((i[0],i[1]) for i in cities)
-    starts=[i[0] for i in cities]
-    destinations=[i[1] for i in cities]
-    start=''.join([i for i in starts if not i in destinations])
+        start,destination=sys.stdin.readline().split()
+        d[start]=destination
+
+    start=[i for i in d.keys() if not i in d.values()][0]
     path=[start]
-    for _ in range(len(starts)):
+    for _ in range(len(d.items())):
         path.append(d[path[-1]])
     for i in path[::-1]: print(i)
