@@ -4,7 +4,7 @@ cases = int(sys.stdin.readline().rstrip())
 
 for _ in range(cases):
     i=(sys.stdin.readline().rstrip().lower())
-    j=i.replace(',',' ').replace('and',' ').split(' ')
+    j=i.replace(',',' ').replace('and',' ').split()
     h,m,s=0,0,0
     for word in j:
         if 'h' in word:

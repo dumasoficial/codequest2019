@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu May  2 16:37:56 2019
-
-@author: Emilio
-"""
 
 import sys,datetime
 cases = int(sys.stdin.readline().rstrip())
