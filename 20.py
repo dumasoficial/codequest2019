@@ -4,7 +4,6 @@ cases = int(sys.stdin.readline().rstrip())
 
 for _ in range(cases):
     k,u=sys.stdin.readline().split()
-    known=[]
     d={}
     for _ in range(int(k)):
         name,length,width,wing,angle=sys.stdin.readline().split()
