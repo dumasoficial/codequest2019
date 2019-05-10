@@ -19,7 +19,7 @@ def solve(grid):
     if not empty:
         return grid
     empty_with_available=[(available(grid,s),s) for s in empty]
-    options,square=sorted(empty_with_available,key=lambda x:len(x[0]))[0]
+    options,square=min(empty_with_available,key=lambda x:len(x[0]))
     if len(options)==0:
         raise Exception('No options')
     for option in options:
