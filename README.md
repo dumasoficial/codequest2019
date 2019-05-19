@@ -7,4 +7,5 @@ Our solutions to <a href='https://www.lockheedmartin.com/en-us/who-we-are/commun
 <li>This year input was read from "the standard input channel", not from a file. To do this in Python you can use "sys.stdin.readline()".</li>
 <li>Feel free to contribute</li>
 </ul>
+<br>
 Oak Grove, CA ;)
