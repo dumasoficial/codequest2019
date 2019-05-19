@@ -6,7 +6,7 @@ def legal(x,y,grid):
     column=[grid[x,i] for i in range(9) if grid[x,i]>0]
     topleft=((x-x%3),(y-y%3))
     peers=[(0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)]
-    sector=[grid[topleft[0]+i[0],topleft[1]+i[1]] for i in peers if grid[topleft[0]+i[0],topleft[1]+i[1]]>0]
+    sector=[grid[topleft[0]+i[0],topleft[1]+i[1]] for i in peers if grid[topleft[0]+i[0],topleft[1]+i[1]]>0]   
     available=[]
     for i in moves:
         if i not in row and i not in column and i not in sector:
@@ -30,7 +30,7 @@ def solve(grid):
             continue
     if solution:
         return solution
-
+    
 def display(grid):
     for y in range(9):
         for x in range(9):
@@ -39,7 +39,7 @@ def display(grid):
             else:
                 print(grid[x,y],end='')
         print()
-
+        
 cases = int(sys.stdin.readline().rstrip())
 for _ in range(cases):
     grid={}
