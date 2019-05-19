@@ -1,27 +1,26 @@
 import sys
 
-def available(grid,square):
+def legal(x,y,grid):
     moves=[1,2,3,4,5,6,7,8,9]
-    row=[grid[s,square[1]] for s in range(9)]
-    column=[grid[square[0],s] for s in range(9)]
-    topleft=(square[0]-square[0]%3,square[1]-square[1]%3)
-    sector=[(0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)]
-    peers=[grid[topleft[0]+s[0],topleft[1]+s[1]] for s in sector]
+    row=[grid[i,y] for i in range(9) if grid[i,y]>0]
+    column=[grid[x,i] for i in range(9) if grid[x,i]>0]
+    topleft=((x-x%3),(y-y%3))
+    peers=[(0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)]
+    sector=[grid[topleft[0]+i[0],topleft[1]+i[1]] for i in peers if grid[topleft[0]+i[0],topleft[1]+i[1]]>0]   
     available=[]
-    for move in moves:
-        if move in row or move in column or move in peers:
-            continue
-        available.append(move)
-    return available 
-    
+    for i in moves:
+        if i not in row and i not in column and i not in sector:
+            available.append(i)
+    return available
+
 def solve(grid):
-    empty=[s for s in grid if grid[s]==0]
+    empty=[(i,legal(i[0],i[1],grid)) for i in grid if grid[i]==0]
     if not empty:
         return grid
-    empty_with_available=[(available(grid,s),s) for s in empty]
-    options,square=sorted(empty_with_available,key=lambda x:len(x[0]))[0]
-    if len(options)==0:
-        raise Exception('No options')
+    square,options=min(empty,key=lambda i:len(i[1]))
+
+    if not options:
+        raise Exception('No Options')
     for option in options:
         try:
             copy=grid.copy()
@@ -31,27 +30,24 @@ def solve(grid):
             continue
     if solution:
         return solution
-    print('Found no solution')
+    
+def display(grid):
+    for y in range(9):
+        for x in range(9):
+            if grid[x,y]==0:
+                print('_',end='')
+            else:
+                print(grid[x,y],end='')
+        print()
         
-def display(grid):            
-    for square in grid.keys():
-        if grid[square]==0:
-            print('_',end='')
-        else:       
-            print(grid[square],end='')
-        if square[0]==8:
-            print()
-
-            
 cases = int(sys.stdin.readline().rstrip())
 for _ in range(cases):
     grid={}
     for y in range(9):
-        row=sys.stdin.readline().rstrip()
-        for x,value in enumerate(row):
+        line=sys.stdin.readline().rstrip()
+        for x,value in enumerate(line):
             try:
                 grid[x,y]=int(value)
             except:
                 grid[x,y]=0
-                
     display(solve(grid))
